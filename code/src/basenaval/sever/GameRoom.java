@@ -15,25 +15,22 @@ public class GameRoom {
         this.jugador1 = j1;
     }
 
-    public String getId() {
-        return id;
-    }
+    public String getId() { return id; }
 
-    public Servidor.ClientHandler getJugador1() {
-        return jugador1;
-    }
+    public Servidor.ClientHandler getJugador1() { return jugador1; }
+
     public void unirJugador2(Servidor.ClientHandler j2) {
         this.jugador2 = j2;
     }
 
-    public boolean estaLlena() {
-        return jugador2 != null;
-    }
+    public boolean estaLlena() { return jugador2 != null; }
+
     public Servidor.ClientHandler obtenerRival(Servidor.ClientHandler actual) {
         if (actual == jugador1) return jugador2;
         if (actual == jugador2) return jugador1;
         return null; 
     }
+
     public void setJugadorListo(Servidor.ClientHandler j) {
         if (j == jugador1) j1Listo = true;
         if (j == jugador2) j2Listo = true;
@@ -51,5 +48,17 @@ public class GameRoom {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    // ⭐ MÉTODO NUEVO CORRECTO
+    public void jugadorDesconectado(Servidor.ClientHandler jugador) {
+        Servidor.ClientHandler rival = obtenerRival(jugador);
+
+        if (rival != null) {
+            rival.enviarMensaje("GAME_OVER:WIN_BY_DISCONNECT");
+            rival.enviarMensaje("El oponente se desconectó. Ganaste.");
+        }
+
+        System.out.println("Sala " + id + " finalizada por desconexión.");
     }
 }

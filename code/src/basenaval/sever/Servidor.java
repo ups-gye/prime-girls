@@ -53,6 +53,27 @@ public class Servidor {
             try { salida.writeUTF(msg); } catch (IOException e) {}
         }
 
+        private void manejarDesconexion() {
+    try {
+        if (salaActual != null) {
+            salaActual.jugadorDesconectado(this);
+        }
+        System.out.println("Recursos liberados para " + usuario);
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+
+private void cerrarConexion() {
+    try {
+        if (entrada != null) entrada.close();
+        if (salida != null) salida.close();
+        if (socket != null && !socket.isClosed()) socket.close();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+
         @Override
         public void run() {
             try {
@@ -147,8 +168,12 @@ public class Servidor {
                     }
                 }
             } catch (IOException e) {
-                System.out.println("Usuario desconectado: " + usuario);
-            }
+    System.out.println("Usuario desconectado inesperadamente: " + usuario);
+    manejarDesconexion();
+} finally {
+    cerrarConexion();
+}
+
         }
     }
 }
