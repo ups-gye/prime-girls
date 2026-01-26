@@ -37,10 +37,24 @@ public class RegisterView extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
 
-        JPanel mainPanel = new JPanel();
+        // BORRA LAS LÍNEAS VIEJAS DE mainPanel Y PEGA ESTO AQUÍ:
+        JPanel mainPanel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                Graphics2D g2d = (Graphics2D) g;
+                int width = getWidth();
+                int height = getHeight();
+                Color color1 = new Color(173, 216, 230); // Celeste
+                Color color2 = new Color(70, 130, 180);  // Azul suave
+                GradientPaint gp = new GradientPaint(0, 0, color1, 0, height, color2);
+                g2d.setPaint(gp);
+                g2d.fillRect(0, 0, width, height);
+            }
+        };
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
-        mainPanel.setBackground(new Color(240, 245, 250));
         mainPanel.setBorder(new EmptyBorder(30, 40, 30, 40));
+        
 
         // Título
         JLabel title = new JLabel("REGISTRO DE CAPITÁN");
