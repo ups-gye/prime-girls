@@ -37,7 +37,7 @@ public class RegisterView extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
 
-        // BORRA LAS LÍNEAS VIEJAS DE mainPanel Y PEGA ESTO AQUÍ:
+        
         JPanel mainPanel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
@@ -45,8 +45,8 @@ public class RegisterView extends javax.swing.JFrame {
                 Graphics2D g2d = (Graphics2D) g;
                 int width = getWidth();
                 int height = getHeight();
-                Color color1 = new Color(173, 216, 230); // Celeste
-                Color color2 = new Color(70, 130, 180);  // Azul suave
+                Color color1 = new Color(173, 216, 230); 
+                Color color2 = new Color(70, 130, 180);  
                 GradientPaint gp = new GradientPaint(0, 0, color1, 0, height, color2);
                 g2d.setPaint(gp);
                 g2d.fillRect(0, 0, width, height);
