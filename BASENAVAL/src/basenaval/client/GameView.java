@@ -57,13 +57,25 @@ public class GameView extends javax.swing.JFrame {
         setTitle("Batalla Naval - Jugador: " + (miUsuario != null ? miUsuario : "Invitado"));
         setSize(1100, 650);
         setLocationRelativeTo(null);
-        JPanel mainPanel = new JPanel(new BorderLayout(20, 20));
-        mainPanel.setBackground(COLOR_FONDO);
+       JPanel mainPanel = new JPanel(new BorderLayout(20, 20)) {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                Graphics2D g2d = (Graphics2D) g;
+          
+                Color color1 = new Color(70, 130, 180); 
+                Color color2 = new Color(20, 40, 60);   
+                GradientPaint gp = new GradientPaint(0, 0, color1, 0, getHeight(), color2);
+                g2d.setPaint(gp);
+                g2d.fillRect(0, 0, getWidth(), getHeight());
+            }
+        }; 
+      
         mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         lblEstado = new JLabel("FASE 1: COLOCA TUS BARCOS EN TU FLOTA");
         lblEstado.setFont(new Font("Segoe UI", Font.BOLD, 24));
         lblEstado.setHorizontalAlignment(SwingConstants.CENTER);
-        lblEstado.setForeground(new Color(0, 0, 100));
+        lblEstado.setForeground(Color.CYAN);
         mainPanel.add(lblEstado, BorderLayout.NORTH);
         JPanel panelCentral = new JPanel(new GridLayout(1, 2, 40, 0)); // Dividido en 2 columnas
         panelCentral.setOpaque(false);
