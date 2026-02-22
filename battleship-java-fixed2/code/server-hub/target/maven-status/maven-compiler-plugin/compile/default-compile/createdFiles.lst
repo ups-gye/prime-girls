@@ -1,0 +1,5 @@
+battleship\server\UsuarioDAO.class
+battleship\server\RoomManager$ShotResult.class
+battleship\server\RoomManager.class
+battleship\server\ClientHandler.class
+battleship\server\GameServer.class
