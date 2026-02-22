@@ -1,0 +1,9 @@
+battleship\model\Board$ShotResult.class
+battleship\model\GameRoom.class
+battleship\model\GameMessage.class
+battleship\model\Ship$Type.class
+battleship\model\Ship.class
+battleship\model\Usuario.class
+battleship\model\Board$Cell.class
+battleship\model\Board.class
+battleship\model\GameRoom$Estado.class
